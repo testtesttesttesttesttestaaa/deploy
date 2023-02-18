@@ -1,6 +1,11 @@
-on:
+on: 
+  push:
+    branches: 
+    - main
+    tags:
+      - "v*.*.*"
   workflow_dispatch:
-name: 🚀 FTP
+name: 🚀 FTP Deploy
 jobs:
   web-deploy:
     name: 🎉 Deploy
@@ -15,3 +20,7 @@ jobs:
         server: ftp.tycho.ir
         username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASS }}
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **README.md**
