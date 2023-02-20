@@ -4,7 +4,7 @@
 
 - [x] Release Trigger
 - [x] Deploy
-- [ ] PHP mailer
+- [x] PHP mailer
 - [ ] .env Variables
 - [ ] PHP API
    - [x] Not Allowed Method
