@@ -1,35 +1,64 @@
 <?php
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer; 
+use PHPMailer\PHPMailer\SMTP; 
+use PHPMailer\PHPMailer\Exception; 
+ 
 
 // should add currently dir reader __DIR__
-require_once '/phpmailer/src/PHPMailer.php';
-require_once '/phpmailer/src/SMTP.php';
+require './phpmailer/src/Exception.php'; 
+require './phpmailer/src/PHPMailer.php'; 
+require './phpmailer/src/SMTP.php'; 
 
-// Create a new PHPMailer instance
-$mail = new PHPMailer();
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    
+    
 
-// Set the SMTP settings for the Outlook account
-$mail->isSMTP();
-$mail->Host = 'smtp-mail.outlook.com';
-$mail->SMTPAuth = true;
-$mail->Username = '';
-$mail->Password = '';
-$mail->SMTPSecure = 'tls';
-$mail->Port = 587;
+    if(isset($_POST['title']) && isset($_POST["description"])){
+        $title = $_POST['title'];
+        $description = $_POST["description"];
+        
+        // Set the response content type to JSON
+        header('Content-Type: application/json');
+      
+        // Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        
+        // Set the SMTP settings for the Outlook account
+        $mail->isSMTP();
+        $mail->Host = 'smtp-mail.outlook.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = getenv("MAIL_USERNAME");
+        $mail->Password = getenv("MAIL_PASSWORD");
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+        
+        // Set the email content
+        $mail->setFrom('bug.reporter.bot@outlook.com', 'Bug Reporter Bot');
+        $mail->addAddress('alirezaaraby5@gmail.com');
+        $mail->Subject = $title;
+        $mail->Body = $description;
+        
+        
+        // Send the email
+        if ($mail->send()) {
+             echo json_encode(array('message' => "E-mail has been sent successfully"));
+        } else {
+                  echo json_encode(array('message' => "An error occured while sending E-mail"));
+        }
 
-// Set the email content
-$mail->setFrom('', 'Bug Reporter Bot');
-$mail->addAddress('');
-$mail->Subject = 'Bug Report';
-$mail->Body = 'Please fix the following issue: ...';
+    }
+    
+    else{
+         echo json_encode(array('message' => "Error: you have to send title and description as POST request" ));
+    }
+     
 
-// Send the email
-if ($mail->send()) {
-    echo 'Email sent successfully!';
-} else {
-    echo 'Error sending email: ' . $mail->ErrorInfo;
+ 
+} 
+
+else{
+    echo json_encode(array('message' => "Invalid Request Method."));
 }
+
 
 ?>
