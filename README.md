@@ -1,7 +1,7 @@
 # deploy
 
 ### TODO
-
+- [x] phpmailer download script
 - [x] Release Trigger
 - [x] Deploy
 - [x] PHP mailer
