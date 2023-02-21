@@ -15,6 +15,10 @@ jobs:
         sh download.sh
         
     - name: 📂 Sync files
+      env:
+         MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+         MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+         
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
         server: ftp.tycho.ir
