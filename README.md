@@ -4,6 +4,7 @@
 - [x] phpmailer download script
 - [x] Release Trigger
 - [x] Deploy
+   - [ ] add phpmailer then deploy
 - [x] PHP mailer
 - [ ] .env Variables
 - [ ] PHP API
@@ -16,3 +17,4 @@
 - [ ] README
 - [ ] Security
 - [ ] Contribution Guide
+- [ ] Send Email After Issue Creation
