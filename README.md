@@ -9,7 +9,7 @@
 - [ ] .env Variables
 - [ ] PHP API
    - [x] Not Allowed Method
-   - [ط] Sender
+   - [x] Sender
    - [ ] Token
    - [ ] Limitations
    - [ ] Database
