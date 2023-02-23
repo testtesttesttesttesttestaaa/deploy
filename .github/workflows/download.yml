@@ -1,0 +1,12 @@
+on:
+  - push:
+
+name: Download Vendor
+jobgs:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - uses: "shivammathur/setup-php@v2"
+    with:
+      php-version: "latest"
+    - uses: "ramsey/composer-install@v2"
