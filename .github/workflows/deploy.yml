@@ -9,10 +9,12 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
+    - name: "porvide php env"
+      uses: "shivammathur/setup-php@v2"
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
     - run: |
-        sh download.sh
+        composer install
         
     - name: 📂 Sync files         
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
