@@ -1,12 +1,18 @@
 on:
-  - push:
+  push:
+  workflow_dispatch:
 
 name: Download Vendor
-jobgs:
-    name: 🎉 Deploy
+
+jobs:
+  composer:
+    name: "🎉 Deploy"
     runs-on: ubuntu-latest
     steps:
-    - uses: "shivammathur/setup-php@v2"
-    with:
-      php-version: "latest"
-    - uses: "ramsey/composer-install@v2"
+      - name: "porvide php env"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "latest"
+      - name: "Run Composer"
+        run: "composer install"
+    
