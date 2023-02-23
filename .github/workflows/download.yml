@@ -13,6 +13,7 @@ jobs:
         uses: "shivammathur/setup-php@v2"
         with:
           php-version: "latest"
+      - name: "ls"
+        run: "ls"
       - name: "Run Composer"
         run: "composer install"
-    
